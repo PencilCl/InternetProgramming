@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="cn.pencilsky.internetprogramming.MainActivity">
+
+    <RelativeLayout
+            android:id="@+id/titleLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" android:background="@color/colorPrimary">
+        <TextView
+                android:layout_centerInParent="true"
+                android:text="下载器"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" android:id="@+id/title" android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@android:color/background_light" android:textStyle="normal|bold"
+                android:textSize="18sp"/>
+    </RelativeLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:padding="10dp">
+        <android.support.design.widget.TextInputLayout
+                android:id="@+id/urlTextLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <EditText
+                    android:id="@+id/urlText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="下载地址"/>
+        </android.support.design.widget.TextInputLayout>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/saveText"
+                android:textColor="@color/colorAccent" android:layout_marginTop="10dp" android:text="正在获取保存目录..."/>
+        <ProgressBar
+                style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar" android:max="100" android:visibility="visible"
+                android:layout_marginTop="20dp" android:progress="0"/>
+        <LinearLayout
+                android:id="@+id/downloadInfoLayout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:visibility="visible">
+            <TextView
+                    android:text="线程数:0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/threadNum" android:layout_weight="1"
+                    android:textColor="@color/colorAccent"/>
+            <TextView
+                    android:text="0%"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/percent" android:layout_weight="1"
+                    android:textColor="@color/colorAccent" android:textAlignment="textEnd"/>
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="20dp">
+            <Button
+                    android:text="开始下载"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/start" android:layout_weight="1"
+            />
+            <Button
+                    android:text="暂停下载"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:id="@+id/stop" android:layout_weight="1"
+                    android:allowUndo="false" android:enabled="false" android:clickable="false"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
