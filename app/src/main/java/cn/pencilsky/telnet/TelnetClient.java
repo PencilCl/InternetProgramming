@@ -8,10 +8,10 @@ import java.net.Socket;
  */
 public class TelnetClient {
     // 方向键
-    public final byte[] UP = {(byte) 0x1b, (byte) 0x5b, (byte) 0x41};
-    public final byte[] DOWN = {(byte) 0x1b, (byte) 0x5b, (byte) 0x42};
-    public final byte[] LEFT = {(byte) 0x1b, (byte) 0x5b, (byte) 0x44};
-    public final byte[] RIGHT = {(byte) 0x1b, (byte) 0x5b, (byte) 0x43};
+    public final static byte[] UP = {(byte) 0x1b, (byte) 0x5b, (byte) 0x41};
+    public final static byte[] DOWN = {(byte) 0x1b, (byte) 0x5b, (byte) 0x42};
+    public final static byte[] LEFT = {(byte) 0x1b, (byte) 0x5b, (byte) 0x44};
+    public final static byte[] RIGHT = {(byte) 0x1b, (byte) 0x5b, (byte) 0x43};
 
     private Socket socket;
     private InputStreamReader isr;
@@ -50,11 +50,12 @@ public class TelnetClient {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                int c;
+                char[] chars = new char[1024];
+                int len;
                 try {
-                    while ((c = isr.read()) != -1) {
+                    while ((len = isr.read(chars)) != -1) {
                         if (onReceiveListener != null) {
-                            onReceiveListener.onReceive((char) c);
+                            onReceiveListener.onReceive(chars, len);
                         }
                     }
                 } catch (IOException e) {
@@ -69,7 +70,7 @@ public class TelnetClient {
     }
 
     public interface OnReceiveListener {
-        void onReceive(char c);
+        void onReceive(char[] chars, int len);
     }
 
 }
